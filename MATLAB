@@ -23,3 +23,14 @@ Cq = Cp/lambda;
 Ta = (1/2)*rho*pi*(R^3)*Cq*v^2;
 omega_r_dot = (1/Jt)*(Ta - Kt*omega_r - Tg);
 Pg = Tg*omega_r;
+
+%% Defining the Parameters
+R = 35; %% Radius of rotor
+rho = 1.225; %% air density
+Cpmax = 0.412; %% Maximum power ratio
+np = 0.7; %% ratio between the generator desired power Pd and maximum available power Pmax.
+
+
+
+Papmax = (1/2)*rho*pi*(R^2)*Cpmax*v^3;
+Pdesired = np*Papmax;
