@@ -1,0 +1,25 @@
+
+%% Defining the Parameters
+R = 35; %% Radius of rotor
+rho = 1.225; %% air density
+Kr = 45.52; %% External rotor damping
+Kg = 0.4; %% External generator damping
+Jr = 4950000; %% Rotor inertia
+Jg = 90; %% Generator inertia
+ng = 87.965; %% gearbox ratio
+beta = 15; %% blade pitch angle (in degrees)
+Jt = Jr + (ng^2)*Jg;
+Kt = Kr + (ng^2)*Kg;
+lambda = R*omega_r/v;
+lambda_i = 1/((1/(lambda + 0.08*beta)) - 0.035/(beta^3 + 1));
+c1 = 0.5176;
+c2 = 116;
+c3 = 0.4;
+c4 = 0.5;
+c5 = 21; 
+c6 = 0.0068;
+Cp = c1*(c2/lambda_i - c3*beta - c4)*exp(-c5/lambda_i) + c6*lambda;
+Cq = Cp/lambda;
+Ta = (1/2)*rho*pi*(R^3)*Cq*v^2;
+omega_r_dot = (1/Jt)*(Ta - Kt*omega_r - Tg);
+Pg = Tg*omega_r;
